@@ -13,11 +13,11 @@ public class TouristRepository {
 ///Konstruktør til vores TouristRepository.
 public TouristRepository() {
     this.touristAttractions = new ArrayList<>();
+    ///Hardcoder 2 objecter ind i arraylisten.
+    touristAttractions.add(new TouristAttraction("Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!"));
+    touristAttractions.add(new TouristAttraction("Rundetårn", "Så tårn! Much Round! - Har du nogensinde set et tårn så rundt?"));
 }
 
-///Hardcoder 2 objecter ind i arraylisten.
-touristAttractions.add(new TouristAttraction("Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!"));
-touristAttractions.add(new TouristAttraction("Rundetårn", "So tårn! Much Round! - Har du nogensinde set et tårn så rundt?"));
 
 ///Metode til at tilføje en tourist attraktion.
 public void addAttraction(TouristAttraction touristAttraction){
