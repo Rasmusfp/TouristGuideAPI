@@ -1,20 +1,20 @@
 package com.example.touristguideapi.model;
 
 public class TouristAttraction {
+
     private String name;
     private String description;
 
-
-    public TouristAttraction(String name, String description){
+    public TouristAttraction(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public String getName(String name){
+    public String getName() {
         return name;
     }
 
-    public String getDescription(String description){
+    public String getDescription() {
         return description;
     }
 
@@ -22,7 +22,7 @@ public class TouristAttraction {
         this.name = name;
     }
 
-    public void setDescription(String description){
+    public void setDescription(String description) {
         this.description = description;
     }
 }

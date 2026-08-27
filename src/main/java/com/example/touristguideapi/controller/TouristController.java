@@ -13,24 +13,28 @@ import java.util.ArrayList;
 
 @Controller
 @RequestMapping("attraction")
-
 public class TouristController {
 
-    private TouristService touristService;
+    private final TouristService touristService;
 
-    public class TouristController(TouristService touristService) {
-    this.touristService = touristService;
+    public TouristController(TouristService touristService) {
+        this.touristService = touristService;
     }
 
     @GetMapping()
     public ResponseEntity<ArrayList<TouristAttraction>> getAllAttractions() {
-
-        return new ResponseEntity<>(touristService.getAllAttractions(), HttpStatus.OK);
+        return new ResponseEntity<>(
+                touristService.getAllAttractions(),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("{name}")
-    public ResponseEntity<ArrayList<TouristAttraction>> getAttractionByName(@PathVariable String name) {
-        TouristAttraction attraction = touristService.findMatchingAttractionByName(name);
+    public ResponseEntity<TouristAttraction> getAttractionByName(
+            @PathVariable String name) {
+
+        TouristAttraction attraction =
+                touristService.findAttractionByName(name);
 
         if (attraction != null) {
             return new ResponseEntity<>(attraction, HttpStatus.OK);
@@ -38,5 +42,4 @@ public class TouristController {
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }
