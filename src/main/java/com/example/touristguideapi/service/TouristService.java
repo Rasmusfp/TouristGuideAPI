@@ -13,7 +13,7 @@ public class TouristService {
         this.repository = repository;
     }
     public ArrayList<TouristAttraction> getTouristAttractions() {
-        return repository.getAllAttraction();
+        return repository.getAllAttractions();
     }
 
     public TouristAttraction findAttractionByName(String name) {
