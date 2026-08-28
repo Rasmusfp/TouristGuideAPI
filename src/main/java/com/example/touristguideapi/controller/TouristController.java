@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("attraction")
+@RequestMapping("/attraction")
 public class TouristController {
 
     private final TouristService touristService;
