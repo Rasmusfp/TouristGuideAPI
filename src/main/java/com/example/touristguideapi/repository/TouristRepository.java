@@ -54,4 +54,29 @@ public class TouristRepository {
 
         return null;
     }
+
+    public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction) {
+
+        TouristAttraction existingAttraction = findAttractionByName(name);
+
+        if(existingAttraction != null) {
+            existingAttraction.setName(updatedAttraction.getName());
+            existingAttraction.setDescription(updatedAttraction.getDescription());
+
+            return existingAttraction;
+        }
+
+        return null;
+    }
+
+    public TouristAttraction deleteAttraction(String name) {
+
+        TouristAttraction attraction = findAttractionByName(name);
+
+        if(attraction != null) {
+            touristAttractions.remove(attraction);
+        }
+
+        return attraction;
+    }
 }

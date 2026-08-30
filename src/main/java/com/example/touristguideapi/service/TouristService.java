@@ -22,4 +22,16 @@ public class TouristService {
     public TouristAttraction findAttractionByName(String name) {
         return repository.findAttractionByName(name);
     }
+
+    public void addAttraction(TouristAttraction touristAttraction) {
+        repository.addAttraction(touristAttraction);
+    }
+
+    public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction) {
+        return repository.updateAttraction(name, updatedAttraction);
+    }
+
+    public TouristAttraction deleteAttraction(String name) {
+        return repository.deleteAttraction(name);
+    }
 }
