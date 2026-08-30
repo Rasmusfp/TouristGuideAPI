@@ -10,11 +10,11 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public String getName(String name){
+    public String getName(){
         return name;
     }
 
-    public String getDescription(String description){
+    public String getDescription(){
         return description;
     }
 
