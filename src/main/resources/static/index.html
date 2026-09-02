@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistguide København</title>
+
+    <!-- rel="preconnect" til fonts.googleapis.com gør blot at den opretter fordindelse til Google Fonts serveren i forvejen før den egentlig skal bruge noget derfra. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Henter et CSS-stylesheet fra Google Fonts som bruges til at definere 2 skrifttyper som vi definerer i style.css (Specifikt h1 og h2) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Henter vores css kode fra style.css filen -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="wrap">
+        <a href="#top" class="brand">Turistguide</a>
+        <nav aria-label="Hovedmenu">
+            <ul>
+                <li><a href="#om">Om guiden</a></li>
+                <li><a href="#eksterne">Gode links</a></li>
+                <li><a href="#api">Se attraktioner</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="top">
+
+    <section class="hero">
+        <div class="wrap">
+            <div>
+                <h1>Din guide til Københavns bedste oplevelser</h1>
+                <p>
+                    Turistguide samler byens mest besøgte attraktioner ét sted, så du hurtigt kan
+                    planlægge en dag i København – uanset om du har et par timer eller en hel uge.
+                </p>
+                <a class="button" href="#api">Se turistattraktioner</a>
+            </div>
+            <img class="hero-image" src="images/hero.png" alt="Illustration af farverige husfacader ved en havn, inspireret af Nyhavn">
+        </div>
+    </section>
+
+    <section id="om">
+        <div class="wrap">
+            <h2>Om guiden</h2>
+            <p class="section-intro">
+                Turistguide dækker København og er tænkt som et hurtigt opslagsværk for besøgende,
+                der gerne vil kombinere klassiske seværdigheder med et par mindre kendte steder.
+            </p>
+            <div class="about-grid">
+                <div>
+                    <h3>Hvem er den til?</h3>
+                    <p>Weekendturister, familier og kultur- og naturelskere, der vil have det bedste ud af et kort ophold.</p>
+                </div>
+                <div>
+                    <h3>Hvad dækker den?</h3>
+                    <p>Attraktioner i og omkring København centrum – fra forlystelser til museer og grønne åndehuller.</p>
+                </div>
+                <div>
+                    <h3>Hvordan bruges den?</h3>
+                    <p>Brug linkene nedenfor til at se alle attraktioner, eller slå en enkelt attraktion op ved navn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eksterne">
+        <div class="wrap">
+            <h2>Gode links til din tur</h2>
+            <p class="section-intro">
+                Praktisk information fra officielle sider, som er værd at kigge på, før du tager afsted.
+            </p>
+            <ul class="link-list">
+                <li>
+                    <a href="https://www.visitcopenhagen.dk" target="_blank" rel="noopener">
+              <span>
+                <span class="label">Copenhagen Card</span>
+                <span class="desc">Ét kort til offentlig transport og gratis adgang til mange attraktioner</span>
+              </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.rejseplanen.dk" target="_blank" rel="noopener">
+              <span>
+                <span class="label">Rejseplanen</span>
+                <span class="desc">Find vej rundt i byen med bus, tog og metro</span>
+              </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.visitdenmark.dk" target="_blank" rel="noopener">
+              <span>
+                <span class="label">VisitDenmark</span>
+                <span class="desc">Officiel rejseguide til hele Danmark</span>
+              </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="api">
+        <div class="wrap">
+            <h2>Se turistattraktionerne</h2>
+            <p class="section-intro">
+                Disse links kalder API'et direkte, så oplysningerne vises i JSON-format i browseren.
+            </p>
+            <ol class="link-list">
+                <li>
+                    <a href="/attractions">
+              <span>
+                <span class="label">Alle attraktioner</span>
+                <span class="desc">Viser samtlige turistattraktioner i guiden</span>
+              </span>
+                        <span class="method">GET</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/attractions/tivoli">
+              <span>
+                <span class="label">Tivoli</span>
+                <span class="desc">Eksempel på opslag af én attraktion ved navn</span>
+              </span>
+                        <span class="method">GET</span>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer" id="kontakt">
+    <div class="wrap">
+        <div>
+            <h2>Kontakt</h2>
+            <p>Turistguide København</p>
+            <p>E-mail: <a href="mailto:info@turistguide.dk">info@turistguide.dk</a></p>
+            <p>Telefon: +45 12 34 56 78</p>
+        </div>
+        <div>
+            <h2>Om projektet</h2>
+            <p>Udviklet som en del af Turistguide-opgaven (Del 1: CRUD)</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
