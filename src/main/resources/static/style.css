@@ -141,7 +141,7 @@ nav a:hover {
 /* Styler vores VIGTIGSTE overskrift!!! */
 .hero h1 {
     font-family: var(--font-display); /* fonten på overskriften */
-    font-size: clamp(2.2rem, 4vw, 3.2rem); /* font størrelse tilpasser sig skærmstørrelser 2.2rem minimum og 3.2rem maximum */
+    font-size: clamp(2.2rem, 4vw, 3.2rem); /* font størrelse tilpasser sig skærmstørrelser 2.2rem minimum, 4vw betyder 4% af skærmens bredde og 3.2rem maximum */
     line-height: 1.12; /* linjeafstand */
     margin: 0 0 20px; /* fjerne margin i top og højre/venstre og sætter 20px til bunden*/
     color: var(--color-harbor-dark); /* sætter farven */
