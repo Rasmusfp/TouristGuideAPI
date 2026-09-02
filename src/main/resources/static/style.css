@@ -1,4 +1,6 @@
+/* :root definerer globale css variabler - man kan bruge variablerne igen med var(--navn) */
 :root {
+    /* Dette definerer vores farve variabler */
     --color-bg: #FAF7F1;
     --color-ink: #1E2328;
     --color-ink-soft: #4B5359;
@@ -9,306 +11,359 @@
     --color-card: #FFFFFF;
     --color-border: #E4DCC9;
 
+    /* Dette definerer vores font variabler */
     --font-display: "Fraunces", "Georgia", serif;
     --font-body: "Work Sans", "Segoe UI", sans-serif;
 
+    /* Dette definerer max hjemmeside bredde */
     --max-width: 1040px;
 }
 
-
+/* "*" bruges til alle elementer på hjemmesiden - den giver reglen defineret i den til alt på hjemmesiden */
 * {
+    /* Dette definerer at padding og border bliver regnet med i elementets samlede størrelse */
     box-sizing: border-box;
+
+    /* Dette definerer hvordan musen skal se ud (Her ændre vi den til et prædefineret billede */
     cursor: url('images/Caroussel.png'), pointer;
 }
 
+/* Dette definerer html rammen */
 html {
+    /* Dette definerer at scrolling til sektioner er bløde/smooth i stedet for øjeblikkeligt */
     scroll-behavior: smooth;
 }
 
+/* Dette definerer ting for selve indholdet på siden*/
 body {
-    margin: 0;
-    background: var(--color-bg);
-    color: var(--color-ink);
-    font-family: var(--font-body);
-    line-height: 1.6;
+    margin: 0; /* Fjerner browserens stadard margins (Luftbæltet rundt om elementerne) */
+    background: var(--color-bg);/* Dette definerer vores baggrundsfarve (Læg mærke til vi kalder på :root farven med var(--navn) */
+    color: var(--color-ink);/* Dette definerer almindeligt tekstfarve, igen fra :root */
+    font-family: var(--font-body);/* Dette definerer almindelig tekst skrifttype, defineret i :root */
+    line-height: 1.6;/* Dette definerer linjeafstanden for almindelig tekst */
 }
 
+/* Dette sætter regler for vores billeder */
 img {
-    max-width: 100%;
-    display: block;
+    max-width: 100%; /* Dette definerer at billedet ikke bliver bredere end billedet container */
+    display: block; /* Dette definerer at img skal blive til et "block" element */
 }
 
+/* a er styling for alle links */
 a {
-    color: var(--color-harbor);
+    color: var(--color-harbor); /* Dette definerer farven på linket, defineret i :root */
 }
 
+
+/* Dette er stylingen når du navigere til knappen via tastaturet (tab taget)*/
 a:focus-visible,
 button:focus-visible {
-    outline: 3px solid var(--color-brick);
-    outline-offset: 2px;
+    outline: 3px solid var(--color-brick); /* Dette definerer outlinen omkring elementet*/
+    outline-offset: 2px; /* Dette definerer hvor meget afstand der er mellem outlinen og elementet */
 }
 
+/* Styling til vores wrap klasse (holder indholdet samlet) */
 .wrap {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 24px;
+    max-width: var(--max-width); /* Dette definerer at den ikke må være mere end 1040px defineret i :root*/
+    margin: 0 auto; /* margin er afstanden udenfor elementet (Luft uden for kassen) */
+    padding: 0 24px; /* padding er afstanden inde i elementet  (Luft inde i kassen) */
 }
 
 /* ---------- Header / nav ---------- */
 
+
+/* Styling af vores header */
 .site-header {
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-bg);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    border-bottom: 1px solid var(--color-border); /* Laver en linje under headeren og definerer hvor stor den skal være*/
+    background: var(--color-bg); /* Dette definerer baggrundsfarven i headeren */
+    position: sticky; /* Dette definerer at den skal vises øverst hele tiden (Selv når man scroller ned) */
+    top: 0; /* angiver at den er helt oppe i toppen */
+    z-index: 10; /* angiver at den ligger ovenpå det andet indhold, frem for under det */
 }
 
+/* Styling af vores wrap element inden i headeren */
 .site-header .wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 18px;
-    padding-bottom: 18px;
+    display: flex; /* alt vi bruger flexbox til at placere elementerne */
+    align-items: center; /* centrerer elementerne lodret */
+    justify-content: space-between; /* ligger elementerne med luft imellem */
+    padding-top: 18px; /* luft over indholdet */
+    padding-bottom: 18px; /* luft under indholdet */
 }
 
+/* Styler vores brand (hjemmesidens logo og navn)*/
 .brand {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--color-harbor-dark);
-    text-decoration: none;
+    font-family: var(--font-display); /* fonten for overskriften */
+    font-size: 1.4rem; /* størrelsen på overskriften */
+    font-weight: 600; /* tekstens tykkelse */
+    color: var(--color-harbor-dark); /* tekstens farve */
+    text-decoration: none; /* fjerne underscore stregen på links */
 }
 
+/* Styler vores nav unummerede lister */
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 28px;
-    margin: 0;
-    padding: 0;
+    list-style: none; /* fjerne prikkerne fra listen */
+    display: flex; /* placerer menupunkterne ved siden af hinanden */
+    gap: 28px; /* afstanden mellem menupunkterne */
+    margin: 0; /* fjerner standard margin */
+    padding: 0; /* fjerne standard padding (fordi vi skriver 0) */
 }
 
+/* Styler vores nav links */
 nav a {
-    text-decoration: none;
-    color: var(--color-ink);
-    font-size: 0.95rem;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 2px;
-    transition: border-color 0.15s ease;
+    text-decoration: none; /* fjerne understreg på linket */
+    color: var(--color-ink); /* farve på linket */
+    font-size: 0.95rem; /* størrelse på linket */
+    border-bottom: 2px solid transparent; /* gennemsigtig boarder så størrelsen ikke ændre sig når du hover musen hen over */
+    padding-bottom: 2px; /* linjeafstand under teksten */
+    transition: border-color 0.15s ease; /* gør ændringen af borderfarven blød */
 }
 
+/* Styler når musen hovers over et navigationslink */
 nav a:hover {
-    border-color: var(--color-brick);
+    border-color: var(--color-brick); /* farve på boarderen når man hover musen over */
 }
 
 /* ---------- Hero ---------- */
 
+/* Styling for hero sektionen */
 .hero {
-    padding: 64px 0 56px;
+    padding: 64px 0 56px; /* 64px er for top, ventre/højre er 0 og bund er de 56px */
 }
 
+/* Styling for wrap elementet inde i hero */
 .hero .wrap {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
-    align-items: center;
+    display: grid; /* definere at vi bruger et CSS-grid */
+    grid-template-columns: 1.1fr 0.9fr; /* laver 2 kolloner hvor den første er lidt større end den anden */
+    gap: 48px; /* gappet mellem kollonerne */
+    align-items: center; /* centrerer indholdet lodret */
 }
 
+/* Styler vores VIGTIGSTE overskrift!!! */
 .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    line-height: 1.12;
-    margin: 0 0 20px;
-    color: var(--color-harbor-dark);
-    max-width: 16ch;
+    font-family: var(--font-display); /* fonten på overskriften */
+    font-size: clamp(2.2rem, 4vw, 3.2rem); /* font størrelse tilpasser sig skærmstørrelser 2.2rem minimum og 3.2rem maximum */
+    line-height: 1.12; /* linjeafstand */
+    margin: 0 0 20px; /* fjerne margin i top og højre/venstre og sætter 20px til bunden*/
+    color: var(--color-harbor-dark); /* sætter farven */
+    max-width: 16ch; /* sætter max bredde ch betyder "ca. bredde" */
 }
 
+/* Styler paragraph elementet for hero sektionen */
 .hero p {
-    font-size: 1.08rem;
-    color: var(--color-ink-soft);
-    max-width: 46ch;
-    margin: 0 0 28px;
+    font-size: 1.08rem; /* størrelse på font */
+    color: var(--color-ink-soft); /* farve på font */
+    max-width: 46ch; /* begrænser tekstkassens bredde */
+    margin: 0 0 28px; /* fjerne top og højre/venstre margin og sætter bund til 28px */
 }
 
+/* Styler hero billedet */
 .hero-image {
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
+    border-radius: 6px; /* dette afrunder hjørnerne */
+    overflow: hidden;  /* skjuler indholdet der gør ud over elementet */
+    border: 1px solid var(--color-border); /* laver en border rundt om billedet og fortælle hvilken farve den skal være */
 }
 
+/* Styler knap */
 .button {
-    display: inline-block;
-    background: var(--color-brick);
-    color: #FFFFFF;
-    padding: 12px 22px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
+    display: inline-block; /* Gør linket til et inline-block element hvilket gør det muligt at give det padding som en knap */
+    background: var(--color-brick); /* baggrundsfarve for knap */
+    color: #FFFFFF; /* tekstfarven på knappen */
+    padding: 12px 22px; /* luft inde i knappen top/bund og højre/venstre*/
+    border-radius: 4px; /* afrunder hjørnerne */
+    text-decoration: none; /* fjerner underline fra elementet */
+    font-weight: 600; /* tekstens tykkelse*/
+    font-size: 0.95rem; /* størrelsen på teksten */
 }
 
+/* Styler når musen hover over knappen */
 .button:hover {
-    background: #93401f;
+    background: #93401f; /* gør baggrunden mørkere når man hover over*/
 }
 
 /* ---------- Sections ---------- */
 
+/* Styling for alle section elementer */
 section {
-    padding: 48px 0;
+    padding: 48px 0; /* luft over og under 48 px og fjerne højre venstre */
 }
 
+/* Section + section styler hvordan en section kommer efter en anden section */
 section + section {
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border); /* laver en linje mellem sectionerne og vælger farven */
 }
 
+/* Styling de NÆSTVIGTIGSTE overskrifter!! */
 h2 {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: var(--color-harbor-dark);
-    margin: 0 0 8px;
+    font-family: var(--font-display); /* Font på overskrift*/
+    font-size: 1.8rem; /* Størrelse på overskrift */
+    color: var(--color-harbor-dark); /* farve på overskrift */
+    margin: 0 0 8px; /* fjerne margin på top og højre/venstre og giver 8px under */
 }
 
+/* Styler sections for introduktionstekst */
 .section-intro {
-    color: var(--color-ink-soft);
-    max-width: 60ch;
-    margin: 0 0 32px;
+    color: var(--color-ink-soft); /* farve på tekst */
+    max-width: 60ch; /* begrænser tekstbredden */
+    margin: 0 0 32px; /* fjerne margin fra top og højre/venstre og stætter bund til 32px*/
 }
 
 /* ---------- About ---------- */
 
+/* Styler grid med informationsboxe */
 .about-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    display: grid; /* vælger CSS grid*/
+    grid-template-columns: repeat(3, 1fr); /* sætter 3 kolonner af samme størrelse */
+    gap: 24px; /* sætter afstanden mellem kolonnerne */
 }
 
+/* Styler div inden i about-grid */
 .about-grid div {
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    padding: 20px;
+    background: var(--color-card); /* baggrundsfarve */
+    border: 1px solid var(--color-border); /* sætter en border rundt om boxen */
+    border-radius: 6px; /* afrunder hjørner */
+    padding: 20px; /* luft inde i boxen */
 }
 
+/* Styler den TREDJEVIGTIGSTE i about-grid! */
 .about-grid h3 {
-    font-size: 1.05rem;
-    margin: 0 0 8px;
-    color: var(--color-green);
+    font-size: 1.05rem; /* størrelse på tekst*/
+    margin: 0 0 8px; /* fjerne margin fra top og højre/venstre og sætter bund til 8px */
+    color: var(--color-green); /* farve på tekst */
 }
 
+/* Styler paragraph i about-grid */
 .about-grid p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: var(--color-ink-soft);
+    margin: 0; /* fjerne standard margin */
+    font-size: 0.95rem; /* tekststørrelse */
+    color: var(--color-ink-soft); /* tekstfarve */
 }
 
 /* ---------- Link lists ---------- */
 
+/*Styler for liste med links  */
 .link-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 12px;
+    list-style: none; /* fjerner liste-prikkerne */
+    margin: 0; /* fjerne margin */
+    padding: 0; /* fjerner padding */
+    display: grid; /* vælger CSS grid */
+    gap: 12px; /* afstand mellem listepunkterne */
 }
 
+/* Styler for hvert listepunkt */
 .link-list li {
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    background: var(--color-card);
+    border: 1px solid var(--color-border); /* border rundt om listepunkt*/
+    border-radius: 6px; /* afrunder hjørnerne */
+    background: var(--color-card); /* baggrundsfarve */
 }
 
+/* Styler for links inden i listen */
 .link-list a {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    padding: 16px 20px;
-    text-decoration: none;
-    color: var(--color-ink);
+    display: flex; /* vælger flexbox */
+    justify-content: space-between; /* placerer indholdet med plads imellem */
+    align-items: baseline; /* Justerer elementer efter deres tekst-baseline */
+    gap: 16px; /* afstand imellem elementerne */
+    padding: 16px 20px; /* luft inde i linket */
+    text-decoration: none; /* fjerne underline */
+    color: var(--color-ink); /* tekstefarve */
 }
 
+/* Styler links inde i listen når musen hover */
 .link-list a:hover {
-    background: #F1ECDF;
+    background: #F1ECDF; /* sætter baggrundsfarven */
 }
 
+/*Styler label i linket */
 .link-list .label {
-    font-weight: 600;
+    font-weight: 600; /* tekstens tykkelse */
 }
 
+/* Styling af HTTP metoden */
 .link-list .method {
-    font-size: 0.8rem;
-    color: var(--color-harbor);
-    border: 1px solid var(--color-harbor);
-    border-radius: 999px;
-    padding: 2px 10px;
-    white-space: nowrap;
+    font-size: 0.8rem; /* tekststørrelse */
+    color: var(--color-harbor); /* tekstfarve */
+    border: 1px solid var(--color-harbor); /* tekstborder */
+    border-radius: 999px; /* gør tekstborderen mere rund og pilleformet */
+    padding: 2px 10px; /* luft omkring teksten */
+    white-space: nowrap; /* gør teksten ikke hopper ned på en ny linje */
 }
 
+/*Styler til link listens beskrivelse */
 .link-list .desc {
-    display: block;
-    font-size: 0.88rem;
-    color: var(--color-ink-soft);
-    margin-top: 4px;
+    display: block; /* vælger CSS block - gør at beskrivelsen kommer på egen linje */
+    font-size: 0.88rem; /* Tekststørrelse */
+    color: var(--color-ink-soft);/* tekstfarve */
+    margin-top: 4px; /* sætter afstanden i toppen til 4px */
 }
 
 /* ---------- Footer ---------- */
 
+/* Styler footeren på siden*/
 .site-footer {
-    background: var(--color-harbor-dark);
-    color: #EFE9DB;
-    padding: 40px 0 32px;
-    margin-top: 24px;
+    background: var(--color-harbor-dark); /* baggrundsfarve */
+    color: #EFE9DB; /* tekstfarve */
+    padding: 40px 0 32px; /* luft inde i footeren (Over, højre/venstre og under */
+    margin-top: 24px; /* sætter afstand mellem indhold og footeren til 24 px. */
 }
 
+/* Styler wrap elementet i footeren */
 .site-footer .wrap {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 24px;
+    display: flex; /* Vælger CSS flex box*/
+    justify-content: space-between; /* placerer elementerne med plads imellem */
+    flex-wrap: wrap; /* tillader at elementerne må hoppe ned på næste linje hvis der ikke er plads*/
+    gap: 24px; /* sætter afstanden wrap elementerne */
 }
 
+/*Styling for den NÆSTVIGTIGSTE overskrift!! */
 .site-footer h2 {
-    color: #FFFFFF;
-    font-size: 1.2rem;
+    color: #FFFFFF; /* tekstfarve */
+    font-size: 1.2rem; /* tekststørrelse */
 }
 
+/* Styling for links i footeren*/
 .site-footer a {
-    color: #F2C9A8;
+    color: #F2C9A8; /* linkfarve*/
 }
 
+/* Styling for paragrafteks i footeren*/
 .site-footer p {
-    margin: 4px 0;
-    font-size: 0.92rem;
-    color: #D7D2C3;
+    margin: 4px 0; /* sætter margin til 4px for over/under og fjerne margin for højre/venstre */
+    font-size: 0.92rem;/* tekststørrelse */
+    color: #D7D2C3; /* tekstfarve */
 }
 
 /* ---------- Responsivt ---------- */
 
+/* MOBILE FIRST! (Hvis skærmen er 760px eller mindre*/
 @media (max-width: 760px) {
     nav ul {
-        gap: 16px;
-        flex-wrap: wrap;
+        gap: 16px; /* sætter mindre afstand mellem menupunkterne hvis man besøger siden fra en mindre skærm*/
+        flex-wrap: wrap; /* vælger CSS wrap - tillader at menupunkterne må hoppe ned på næste linje */
     }
 
+    /* styler wrap elementet i hero elementet for mindre skærm */
     .hero .wrap {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* vi ændre fra 2 kolonner til 1 kolonne */
     }
 
+    /* Styler billede for en mindre skærm */
     .hero-image {
-        order: -1;
+        order: -1; /* flytter billedet før teksten (-1 før teksten --- +1 efter teksten) */
     }
 
+    /* Styler about-grid for mindre skærm */
     .about-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Vi ændre fra 3 til 1 kolonne */
     }
 
+    /* Styler footer wrap elementet til mindre skærm */
     .site-footer .wrap {
-        flex-direction: column;
+        flex-direction: column; /* Vi placerer elementerne lodret frem for vandret */
     }
 }
 
+/* Til brugere der ønsker mindre bevægelse - bliver bevægelsen reduceret */
 @media (prefers-reduced-motion: reduce) {
     html {
-        scroll-behavior: auto;
+        scroll-behavior: auto; /* fjerner smooth scroll fra html */
     }
 }

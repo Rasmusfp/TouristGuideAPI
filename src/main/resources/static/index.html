@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Dette bliver vist i fanebladet (Altså fanebladets navn) -->
     <title>Turistguide København</title>
 
     <!-- rel="preconnect" til fonts.googleapis.com gør blot at den opretter fordindelse til Google Fonts serveren i forvejen før den egentlig skal bruge noget derfra. -->
@@ -15,11 +17,21 @@
 </head>
 <body>
 
+<!-- Den øverste del af hjemmesiden -->
 <header class="site-header">
+
+    <!-- Wrap bruges til at holde indholdet samlet og begrænse bredden -->
     <div class="wrap">
+
+        <!-- Når man trykker på Turistguide teksten, bringer den dig til den øverste del af siden. -->
         <a href="#top" class="brand">Turistguide</a>
+
+        <!-- Navigation / menuen på hjemmesiden -->
         <nav aria-label="Hovedmenu">
+
+            <!-- <ul> opretter en liste uden numre -->
             <ul>
+                <!-- <li> er links som sender brugeren til sektioner ved hjælp af ID. (Herunder er ID'erne "#om" & "#eksterne" .. osv.-->
                 <li><a href="#om">Om guiden</a></li>
                 <li><a href="#eksterne">Gode links</a></li>
                 <li><a href="#api">Se attraktioner</a></li>
@@ -29,31 +41,49 @@
     </div>
 </header>
 
+<!-- Det er hjemmesidens primære indhold, og id="top" gør at vi kan navigere hertil med referencen href="#top" -->
 <main id="top">
 
+    <!-- Dette er den første store sektion på hjemmesiden -->
     <section class="hero">
+
+        <!-- Div er division som er en usynlig "kasse" som bruges til at strukturerer og gruppere elementer-->
+        <!-- class="wrap" kalder på silen fra style.css -->
         <div class="wrap">
             <div>
+                <!-- h1 er DEN VIGTIGSTE overskrift!!! -->
                 <h1>Din guide til Københavns bedste oplevelser</h1>
                 <p>
                     Turistguide samler byens mest besøgte attraktioner ét sted, så du hurtigt kan
                     planlægge en dag i København – uanset om du har et par timer eller en hel uge.
                 </p>
+                <!-- <a er et link der er stylet som en knap i style.css, denne knap sender brugeren til api sektionen.  -->
                 <a class="button" href="#api">Se turistattraktioner</a>
             </div>
-            <img class="hero-image" src="images/hero.png" alt="Illustration af farverige husfacader ved en havn, inspireret af Nyhavn">
+            <!-- Billede til hero sektionen - src angiver stien til billedet. -->
+            <img class="hero-image" src="images/hero.png" alt="Illustration af EK's logo">
         </div>
     </section>
 
+    <!-- Sektion med information om turistguide, id="om" gør det muligt at navigere hertil med href="#om". -->
     <section id="om">
+
+        <!-- Div er division som er en usynlig "kasse" som bruges til at strukturerer og gruppere elementer-->
+        <!-- class="wrap" kalder på silen fra style.css -->
         <div class="wrap">
+
+            <!-- h2 er den NÆSTEVIGTIGSTE overskrift!! -->
             <h2>Om guiden</h2>
+
+            <!-- her har vi en paragraf som er designet efter klassen section-intro fra style.css -->
             <p class="section-intro">
                 Turistguide dækker København og er tænkt som et hurtigt opslagsværk for besøgende,
                 der gerne vil kombinere klassiske seværdigheder med et par mindre kendte steder.
             </p>
+            <!-- klassen er brugt til at definere designet af vores grid. -->
             <div class="about-grid">
                 <div>
+                    <!-- h3 er den TREDJEVIGTIGSTE overskrift! -->
                     <h3>Hvem er den til?</h3>
                     <p>Weekendturister, familier og kultur- og naturelskere, der vil have det bedste ud af et kort ophold.</p>
                 </div>
@@ -69,17 +99,27 @@
         </div>
     </section>
 
+    <!-- sektion med links til eksterne hjemmesider, defineret med id="eksterne" så vi kan navigere til det med href="#eksterne"-->
     <section id="eksterne">
         <div class="wrap">
             <h2>Gode links til din tur</h2>
             <p class="section-intro">
                 Praktisk information fra officielle sider, som er værd at kigge på, før du tager afsted.
             </p>
+            <!-- Her oprettes en liste uden numre -->
             <ul class="link-list">
+                <!-- her oprettes der et link der har en reference til en ekstern hjemmeside-->
+                <!-- target="_blank" sørger for at linket åbnes på en ny fane. -->
+                <!-- rel="noopener" er en sikkerhedsforanstaltning der sørger for at den nye fane ikke får adgang til window.opener
+                (forbindelsen mellem de to faner brydes. Vores side kan ikke menipuleres af den side vi linker til -->
                 <li>
                     <a href="https://www.visitcopenhagen.dk" target="_blank" rel="noopener">
-              <span>
+
+                        <!-- span bruges som en mindre beholder, i den her sammenhæng bruger vi det til at samle linkets tekst -->
+                        <span>
+                            <!-- class="label" er titlen på vores link -->
                 <span class="label">Copenhagen Card</span>
+                            <!-- class="desc" er beskrivelsen af vores link -->
                 <span class="desc">Ét kort til offentlig transport og gratis adgang til mange attraktioner</span>
               </span>
                     </a>
@@ -104,12 +144,14 @@
         </div>
     </section>
 
+    <!-- sektion med link til vores spring-boot API'er (id="api" som bruges til href="#api" -->
     <section id="api">
         <div class="wrap">
             <h2>Se turistattraktionerne</h2>
             <p class="section-intro">
                 Disse links kalder API'et direkte, så oplysningerne vises i JSON-format i browseren.
             </p>
+            <!-- ol opretter en numeret liste-->
             <ol class="link-list">
                 <li>
                     <a href="/attractions">
@@ -135,6 +177,7 @@
 
 </main>
 
+<!-- Den nederste del af hjemmesiden har id="kontakt" så den kan refereres til via href="#kontakt" -->
 <footer class="site-footer" id="kontakt">
     <div class="wrap">
         <div>
