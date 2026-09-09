@@ -2,9 +2,25 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Kategori</title>
+    <title th:text="${attraction.name}">Attraktion</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
 
+<section class="attractions-section">
+    <div class="wrap">
+        <h2 th:text="${attraction.name} + ' tags'"> tags</h2>
+
+        <table class="attraction-table">
+            <tbody>
+            <tr th:each="tags : ${attraction.category}">
+                <td th:text="${tags}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/attractions}" class="button"> Tilbage</a>
+    </div>
+</section>
 </body>
 </html>

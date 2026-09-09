@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 /// Annotation til at fortælle spring at denne klasse håndtere HTTP requests.
 @Controller
@@ -107,5 +108,17 @@ public class TouristController {
 
         /// Hvis den er null, returnere vi HTTP STATUS 404 NOT_FOUND.
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/{name}/tags")
+    public String getAttractionTags(@PathVariable String name, Model model) {
+        TouristAttraction attraction = touristService.findAttractionByName(name);
+
+        if (attraction != null) {
+            model.addAttribute("attraction", attraction);
+            return "tags";
+        }
+
+        throw new NoSuchElementException("Attraction not found: " + name);
     }
 }
