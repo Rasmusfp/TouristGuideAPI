@@ -14,7 +14,7 @@
         <table class="attraction-table">
             <tbody>
             <tr th:each="tags : ${attraction.category}">
-                <td th:text="${tags}"></td>
+                <td th:text="${tags.tag}"></td>
             </tr>
             </tbody>
         </table>
