@@ -5,6 +5,7 @@ import com.example.touristguideapi.repository.TouristRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /// Annotation for at lade IDEA vide at denne klasse er en service klasse
 @Service
@@ -19,7 +20,7 @@ public class TouristService {
     }
 
     /// Metode til at returnere alle attraktioner ved hjælp af ArrayList
-    public ArrayList<TouristAttraction> getAllAttractions() {
+    public List<TouristAttraction> getAllAttractions() {
         return repository.getAllAttractions();
     }
 

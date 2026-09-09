@@ -5,12 +5,14 @@ import com.example.touristguideapi.service.TouristService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/// Annotation til at fortælle spring at denne klasse håndtere RESTAPI'er - Dataen bliver automatisk sendt tilbage i JSON format.
-@RestController
+/// Annotation til at fortælle spring at denne klasse håndtere HTTP requests.
+@Controller
 
 /// Annotationen styrer at alle endpoints i klassen starter med "/attractions".
 @RequestMapping("/attractions")
@@ -29,11 +31,9 @@ public class TouristController {
 
     /// Fortæller hvad der skal returneres når GET metoden er håndteret (Denne returnere alle attraktioner)
     /// og sender en HTTP status 200 eller OK tilbage.
-    public ResponseEntity<ArrayList<TouristAttraction>> getAllAttractions() {
-        return new ResponseEntity<>(
-                touristService.getAllAttractions(),
-                HttpStatus.OK
-        );
+    public String getAllAttractions(Model model) {
+        model.addAttribute("attractions", touristService.getAllAttractions());
+        return "attractionList";
     }
 
     /// Denne håndtere så GET requesten for GET /attractions/{NAME}

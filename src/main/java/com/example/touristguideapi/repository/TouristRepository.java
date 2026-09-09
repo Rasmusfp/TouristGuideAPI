@@ -1,36 +1,40 @@
 package com.example.touristguideapi.repository;
 
+import com.example.touristguideapi.model.Category;
 import com.example.touristguideapi.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.touristguideapi.model.Category.*;
 
 /// Annotation for at lade IDEA vide at denne klasse er et repository
 @Repository
 public class TouristRepository {
 
     /// Initialisere en ArrayListe der tager imod TouristAttraction objekter.
-    private ArrayList<TouristAttraction> touristAttractions;
+    private final List<TouristAttraction> touristAttractions =
+            new ArrayList<>(List.of(
+
+                    new TouristAttraction("Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!", "København",
+                            List.of(AMUSEMENT, CHILD_FRIENDLY)),
+
+                    new TouristAttraction("SMK", "Museum for kunst", "København",
+                            List.of(ART, MUSEUM)),
+
+                    new TouristAttraction("Odense Zoo", "Europas bedst zoo", "Odense",
+                            List.of(CHILD_FRIENDLY)),
+
+                    new TouristAttraction("Dyrehaven", "Naturparken", "København",
+                            List.of(NATURE, CHILD_FRIENDLY, FREE)),
+
+                    new TouristAttraction("Brændesgårdshaven", "Bornholms fineste forlystelsespark, og der er også dyr!", "Bornholm",
+                            List.of(AMUSEMENT, CHILD_FRIENDLY))
+                    ));
 
     /// Konstruktør
     public TouristRepository() {
-        this.touristAttractions = new ArrayList<>();
-
-        /// Hardcorded atraktion
-        touristAttractions.add(
-                new TouristAttraction(
-                        "Tivoli",
-                        "Tivoli med mad, drikke og masser af sjov med vores forlystelser!"
-                )
-        );
-
-        /// Hardcorded atraktion
-        touristAttractions.add(
-                new TouristAttraction(
-                        "Rundetårn",
-                        "Så tårn! Much Round! - Har du nogensinde set et tårn så rundt?"
-                )
-        );
     }
 
     /// Metode til at tilføje attraktion
@@ -47,7 +51,7 @@ public class TouristRepository {
     }
 
     /// Metode til at returnere alle attraktioner i en ArrayListe
-    public ArrayList<TouristAttraction> getAllAttractions() {
+    public List<TouristAttraction> getAllAttractions() {
         return touristAttractions;
     }
 
