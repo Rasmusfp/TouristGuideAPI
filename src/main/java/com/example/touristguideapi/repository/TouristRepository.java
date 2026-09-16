@@ -77,6 +77,8 @@ public class TouristRepository {
         if(existingAttraction != null) {
             existingAttraction.setName(updatedAttraction.getName());
             existingAttraction.setDescription(updatedAttraction.getDescription());
+            existingAttraction.setLocation(updatedAttraction.getLocation());
+            existingAttraction.setCategory(updatedAttraction.getCategory());
 
             return existingAttraction;
         }

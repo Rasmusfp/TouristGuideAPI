@@ -40,7 +40,13 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setLocation() {this.location = location;}
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setCategory(List<Category> category){
+        this.category = category;
+    }
 
     @Override
     public String toString(){

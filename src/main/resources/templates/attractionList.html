@@ -30,6 +30,9 @@
                 <td th:text="${attractions.location}"></td>
                 <td>
                     <a th:href="@{/attractions/{name}/tags(name=${attractions.name})}" class="button"> Tags </a>
+                    <a th:href="@{/attractions/{name}/edit(name=${attractions.name})}" class="button">Opdater</a>
+                    <form th:action="@{/attractions/{name}/delete(name=${attractions.name})}" method="post"><button type="submit" class="button">Slet</button>
+                    </form>
                 </td>
             </tr>
             </tbody>

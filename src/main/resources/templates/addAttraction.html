@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilføj attraktion</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<section class="attractions-section">
+    <div class="wrap">
+
+        <h1>Tilføj attraktion</h1>
+
+        <form th:action="@{/attractions/save}"
+              th:object="${attraction}"
+              method="post">
+
+            <label>Navn:</label>
+            <input type="text" th:field="*{name}">
+
+            <br><br>
+
+            <label>Beskrivelse:</label>
+            <input type="text" th:field="*{description}">
+
+            <br><br>
+
+            <label>Lokation:</label>
+            <input type="text" th:field="*{location}">
+
+            <br><br>
+
+            <label>Tags:</label>
+
+            <div th:each="category : ${categories}">
+                <input type="checkbox"
+                th:field="*{category}"
+                th:value="${category}"
+                th:text="${category.tag}">
+            </div>
+
+            <br>
+
+            <button type="submit" class="button">Gem</button>
+        </form>
+
+        <br>
+
+        <a th:href="@{/attractions}" class="button">Tilbage</a>
+    </div>
+</section>
+
+</body>
+</html>

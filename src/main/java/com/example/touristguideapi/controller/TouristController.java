@@ -1,5 +1,6 @@
 package com.example.touristguideapi.controller;
 
+import com.example.touristguideapi.model.Category;
 import com.example.touristguideapi.model.TouristAttraction;
 import com.example.touristguideapi.service.TouristService;
 import org.springframework.http.HttpStatus;
@@ -72,6 +73,37 @@ public class TouristController {
         return new ResponseEntity<>(touristAttraction, HttpStatus.CREATED);
     }
 
+    @GetMapping("/{name}/edit")
+    public String editAttraction(@PathVariable String name, Model model) {
+
+        TouristAttraction attraction = touristService.findAttractionByName(name);
+
+        if(attraction != null) {
+            model.addAttribute("attraction", attraction);
+            model.addAttribute("categories", Category.values());
+            return "updateAttraction";
+        }
+
+        return "redirect:/attractions";
+    }
+
+    @PostMapping("/update")
+    public String updateAttraction(@ModelAttribute TouristAttraction touristAttraction) {
+
+        touristService.updateAttraction(touristAttraction.getName(), touristAttraction);
+
+        return "redirect:/attractions";
+    }
+
+    @GetMapping("/add")
+    public String addAttraction(Model model) {
+
+        model.addAttribute("attraction", new TouristAttraction());
+        model.addAttribute("categories", Category.values());
+
+            return "addAttraction";
+    }
+
     /// Håndtere PUT requests og bruges til at opdatere eksisterende attraktioner
     @PutMapping("{name}")
 
@@ -91,24 +123,12 @@ public class TouristController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+@PostMapping("/{name}/delete")
+public String deleteAttraction(@PathVariable String name) {
 
-    /// @DeleteMapping håndterer DELETE requests, som bruges til at slette en turist attraktion.
-    @DeleteMapping("{name}")
-
-    /// Metode til at slette attraktioner med, bruger @PathVariable til at fetche navnet fra URL'en.
-    public ResponseEntity<TouristAttraction> deleteAttraction(@PathVariable String name) {
-
-        /// Forsøger at slette en attraktion igennem touristService
-        TouristAttraction deletedAttraction = touristService.deleteAttraction(name);
-
-        /// Hvis den ikke er null, sletter vi attraktionen og returnere HTTP STATUS 200 OK
-        if(deletedAttraction != null) {
-            return new ResponseEntity<>(deletedAttraction, HttpStatus.OK);
-        }
-
-        /// Hvis den er null, returnere vi HTTP STATUS 404 NOT_FOUND.
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+        touristService.deleteAttraction(name);
+        return "redirect:/attractions";
+}
 
     @GetMapping("/{name}/tags")
     public String getAttractionTags(@PathVariable String name, Model model) {
