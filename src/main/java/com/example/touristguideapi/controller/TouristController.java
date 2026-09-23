@@ -38,41 +38,6 @@ public class TouristController {
         return "attractionList";
     }
 
-    /// Denne håndtere så GET requesten for GET /attractions/{NAME}
-    @GetMapping("{name}")
-
-
-    /// @PathVariable henter navnet fra URL'en. (Eksempel localhost:8080/attractions/Tivoli returnerer Tivoli.)
-    public ResponseEntity<TouristAttraction> getAttractionByName(
-            @PathVariable String name) {
-
-        /// Fortæller hvad der skal returneres når GET metoden er håndteret (Denne returnere en specifik attraktion, efter navn)
-        TouristAttraction attraction =
-                touristService.findAttractionByName(name);
-
-        /// Hvis attraktionen bliver fundet (ikke er null) så returnere den attraktionen og en HTTP OK eller 200 status.
-        if (attraction != null) {
-            return new ResponseEntity<>(attraction, HttpStatus.OK);
-        }
-
-        /// Hvis attraktionen ikke bliver fundet (returnere null) returnerer den 404 NOT_FOUND.
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    /// Håndtere POST requests og bruges til at oprette en ny attraktion.
-    @PostMapping()
-
-    /// @RequestBody håndterer JSON data fra POST requesten og laver det om til et TouristAttraction-object.
-    /// (Hvis ikke man bruger denne, ville controlleren ikke automatisk vide hvad den skulle gøre med dataen fra requesten)
-    public ResponseEntity<TouristAttraction> addAttraction(@RequestBody TouristAttraction touristAttraction) {
-
-        /// Sender den nye attraktion til touristService hvor den tilføjer den nye attraktion
-        touristService.addAttraction(touristAttraction);
-
-        /// Når den nye attraktion er tilføjet returnerer den attraktionen og en HTTP status 201 CREATED.
-        return new ResponseEntity<>(touristAttraction, HttpStatus.CREATED);
-    }
-
     @GetMapping("/{name}/edit")
     public String editAttraction(@PathVariable String name, Model model) {
 
@@ -104,27 +69,8 @@ public class TouristController {
             return "addAttraction";
     }
 
-    /// Håndtere PUT requests og bruges til at opdatere eksisterende attraktioner
-    @PutMapping("{name}")
-
-    /// Her bliver @PathVariable brugt til at hente NAME fra URL'en, (Hvad er det vi skal ændre)
-    /// derefter bliver @RequestBody brugt til at omdanne den hentede JSON data til et TouristAttraction-object. (Hvad skal vi ændre det til)
-    public ResponseEntity<TouristAttraction> updateAttraction(@PathVariable String name, @RequestBody TouristAttraction touristAttraction) {
-
-        /// Opdaterer attraktionen via touristService
-        TouristAttraction updatedAttraction = touristService.updateAttraction(name, touristAttraction);
-
-        /// Hvis den opdaterede attraktion ikke er null, bliver den nye attraktion og HTTP status 200 OK returneret.
-        if(updatedAttraction != null) {
-            return new ResponseEntity<>(updatedAttraction, HttpStatus.OK);
-        }
-
-        /// Hvis den ikke bliver fundet returnerer den HTTP staus 404 NOT_FOUND.
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-@PostMapping("/{name}/delete")
-public String deleteAttraction(@PathVariable String name) {
+    @PostMapping("/{name}/delete")
+    public String deleteAttraction(@PathVariable String name) {
 
         touristService.deleteAttraction(name);
         return "redirect:/attractions";
