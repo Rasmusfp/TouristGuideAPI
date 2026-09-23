@@ -1,6 +1,5 @@
 package com.example.touristguideapi.repository;
 
-import com.example.touristguideapi.model.Category;
 import com.example.touristguideapi.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 

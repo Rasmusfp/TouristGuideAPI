@@ -3,14 +3,10 @@ package com.example.touristguideapi.controller;
 import com.example.touristguideapi.model.Category;
 import com.example.touristguideapi.model.TouristAttraction;
 import com.example.touristguideapi.service.TouristService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.*;
 
 /// Annotation til at fortælle spring at denne klasse håndtere HTTP requests.
@@ -28,7 +24,7 @@ public class TouristController {
         this.touristService = touristService;
     }
 
-    /// @GetMapping håndtere GET requesten, denne specifikke håndtere GET /attraction.
+    /// GetMapping håndtere GET requesten, denne specifikke håndtere GET /attraction.
     @GetMapping()
 
     /// Fortæller hvad der skal returneres når GET metoden er håndteret (Denne returnere alle attraktioner)
