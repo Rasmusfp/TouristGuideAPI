@@ -31,7 +31,7 @@ class TouristControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    /// @MockitoBean erstatter den rigtige TouristService med en simuleret (mocked) version,
+    /// MockitoBean erstatter den rigtige TouristService med en simuleret (mocked) version,
     /// så testen ikke er afhængig af den rigtige implementering.
     @MockitoBean
     private TouristService touristService;
