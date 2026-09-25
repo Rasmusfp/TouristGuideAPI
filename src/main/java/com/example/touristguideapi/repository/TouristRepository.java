@@ -46,7 +46,7 @@ public class TouristRepository {
             );
         }
 
-        touristAttractions.add(touristAttraction);
+       touristAttractions.add(touristAttraction);
     }
 
     /// Metode til at returnere alle attraktioner i en ArrayListe

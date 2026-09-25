@@ -83,4 +83,10 @@ public class TouristController {
 
         throw new NoSuchElementException("Attraction not found: " + name);
     }
+
+    @PostMapping("/save")
+    public String saveAttraction(@ModelAttribute TouristAttraction touristAttraction) {
+        touristService.addAttraction(touristAttraction);
+        return "redirect:/attractions";
+    }
 }
