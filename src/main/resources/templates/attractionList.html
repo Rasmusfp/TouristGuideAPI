@@ -5,11 +5,12 @@
     <title>Attraktioner</title>
     <link th:href="@{/style.css}" rel="stylesheet">
 </head>
+
+<body>
+
 <header>
     <a th:href="@{/attractions/add}" class="button">Tilføj Attraktion</a>
 </header>
-
-<body>
 
 <section class="attractions-section">
     <div class="wrap">
@@ -24,14 +25,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="attractions : ${attractions}">
-                <td class="col-name" th:text="${attractions.name}"></td>
-                <td th:text="${attractions.description}"></td>
-                <td th:text="${attractions.location}"></td>
+            <tr th:each="a : ${attractions}">
+                <td class="col-name">
+                    <a th:href="@{/attractions/{id}(id=${a.id})}" th:text="${a.name}"></a>
+                </td>
+                <td th:text="${a.description}"></td>
+                <td th:text="${a.location}"></td>
                 <td>
-                    <a th:href="@{/attractions/{name}/tags(name=${attractions.name})}" class="button"> Tags </a>
-                    <a th:href="@{/attractions/{name}/edit(name=${attractions.name})}" class="button">Opdater</a>
-                    <form th:action="@{/attractions/{name}/delete(name=${attractions.name})}" method="post"><button type="submit" class="button">Slet</button>
+                    <a th:href="@{/attractions/{id}/tags(id=${a.id})}" class="button"> Tags </a>
+                    <a th:href="@{/attractions/{id}/edit(id=${a.id})}" class="button">Opdater</a>
+                    <form th:action="@{/attractions/{id}/delete(id=${a.id})}" method="post"><button type="submit" class="button">Slet</button>
                     </form>
                 </td>
             </tr>

@@ -1,0 +1,142 @@
+package com.example.touristguideapi.repository.impl;
+
+import com.example.touristguideapi.model.TouristAttraction;
+import com.example.touristguideapi.repository.TouristRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/// Annotation for at lade IDEA vide at denne klasse er et repository
+@Repository
+public class TouristRepositoryImpl implements TouristRepository {
+
+//    /// Initialisere en ArrayListe der tager imod TouristAttraction objekter.
+//    private final List<TouristAttraction> touristAttractions =
+//            new ArrayList<>(List.of(
+//
+//                    new TouristAttraction("Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!", "København",
+//                            List.of(AMUSEMENT, CHILD_FRIENDLY)),
+//
+//                    new TouristAttraction("SMK", "Museum for kunst", "København",
+//                            List.of(ART, MUSEUM)),
+//
+//                    new TouristAttraction("Odense Zoo", "Europas bedst zoo", "Odense",
+//                            List.of(CHILD_FRIENDLY)),
+//
+//                    new TouristAttraction("Dyrehaven", "Naturparken", "København",
+//                            List.of(NATURE, CHILD_FRIENDLY, FREE)),
+//
+//                    new TouristAttraction("Brændesgårdshaven", "Bornholms fineste forlystelsespark, og der er også dyr!", "Bornholm",
+//                            List.of(AMUSEMENT, CHILD_FRIENDLY))
+//                    ));
+
+    /// Konstruktør
+    public TouristRepositoryImpl() {
+    }
+//    /// Metode til at tilføje attraktion
+//    public void addAttraction(TouristAttraction touristAttraction) {
+//
+//        /// If statement til hvis det TouristAttraction object er null, kaster den en IllegalArguementException og en fejlbesked.
+//        if (touristAttraction == null) {
+//            throw new IllegalArgumentException(
+//                    "Tourist Attractions cannot be null"
+//            );
+//        }
+//
+//       touristAttractions.add(touristAttraction);
+//    }
+//
+//    /// Metode til at returnere alle attraktioner i en ArrayListe
+//    public List<TouristAttraction> getAllAttractions() {
+//        return touristAttractions;
+//    }
+//
+//    /// Metode til at returnere et specifikt TouristAttraction-object fra en ArrayListe
+//    public TouristAttraction findAttractionByName(String name) {
+//
+//        for (TouristAttraction t : touristAttractions) {
+//
+//            if (t.getName().equalsIgnoreCase(name)) {
+//                return t;
+//            }
+//        }
+//        return null;
+//    }
+//    /// Metode til at opdatere en attraktion
+//    public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction) {
+//
+//        TouristAttraction existingAttraction = findAttractionByName(name);
+//
+//        /// Hvis existingAttraction ikke er null skal den opdatere og returnere existingAttraction
+//        if(existingAttraction != null) {
+//            existingAttraction.setName(updatedAttraction.getName());
+//            existingAttraction.setDescription(updatedAttraction.getDescription());
+//            existingAttraction.setLocation(updatedAttraction.getLocation());
+//            existingAttraction.setCategory(updatedAttraction.getCategory());
+//
+//            return existingAttraction;
+//        }
+//
+//        return null;
+//    }
+//
+//    /// Metode til at slette en attraktion
+//    public TouristAttraction deleteAttraction(String name) {
+//
+//        TouristAttraction attraction = findAttractionByName(name);
+//
+//        /// Hvis attraktionen ikke er null skal den slette attraktionen
+//        if(attraction != null) {
+//            touristAttractions.remove(attraction);
+//        }
+//
+//        return attraction;
+//    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+
+    @Override
+    public List<TouristAttraction> getAllAttractions(){
+        String sql = "SELECT * FROM touristattraction";
+        RowMapper<TouristAttraction> rowMapper = new BeanPropertyRowMapper<>(TouristAttraction.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    @Override
+    public TouristAttraction getAttractionById(int id){
+        String sql = "SELECT * FROM touristattraction WHERE id=?";
+        RowMapper<TouristAttraction> rowMapper = new BeanPropertyRowMapper<>(TouristAttraction.class);
+        TouristAttraction touristattraction = jdbcTemplate.queryForObject(sql, rowMapper, id);
+        return touristattraction;
+    }
+
+    @Override
+    public TouristAttraction getAttractionByName(String name) {
+        String sql = "SELECT * FROM touristattraction WHERE name=?";
+        RowMapper<TouristAttraction> rowMapper = new BeanPropertyRowMapper<>(TouristAttraction.class);
+        return jdbcTemplate.queryForObject(sql, rowMapper, name);
+    }
+
+    @Override
+    public void addAttraction(TouristAttraction touristattraction){
+        String sql = "INSERT INTO touristattraction (name, description, location, category) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, touristattraction.getName(), touristattraction.getDescription(), touristattraction.getLocation(), touristattraction.getCategory());
+    }
+
+    @Override
+    public void updateAttraction(TouristAttraction touristattraction){
+        String sql = "UPDATE touristattraction SET name=?, description=?, location=?, category=? WHERE id=?";
+        jdbcTemplate.update(sql, touristattraction.getName(), touristattraction.getDescription(), touristattraction.getLocation(), touristattraction.getCategory());
+    }
+
+    @Override
+    public boolean deleteAttraction(int id){
+        String sql = "DELETE FROM touristattraction WHERE id=?";
+        return jdbcTemplate.update(sql, id) > 0;
+    }
+}

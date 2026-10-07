@@ -34,10 +34,33 @@ public class TouristController {
         return "attractionList";
     }
 
-    @GetMapping("/{name}/edit")
-    public String editAttraction(@PathVariable String name, Model model) {
+    @GetMapping("/{id}")
+    public String findById(@PathVariable int id, Model model) {
+        TouristAttraction attraction = touristService.getAttractionById(id);
 
-        TouristAttraction attraction = touristService.findAttractionByName(name);
+        if (attraction != null) {
+            model.addAttribute ("attraction", attraction);
+            return "attraction";
+        }
+        return "redirect:/attractions";
+    }
+
+    @GetMapping("/name/{name}")
+    public String findByName(@PathVariable String name) {
+        TouristAttraction attraction = touristService.getAttractionByName(name);
+
+        if (attraction != null) {
+            return "redirect:/attractions/" + attraction.getId();
+        }
+
+        return "redirect:/attractions";
+    }
+
+
+    @GetMapping("/{id}/edit")
+    public String updateAttraction(@PathVariable int id, Model model) {
+
+        TouristAttraction attraction = touristService.getAttractionById(id);
 
         if(attraction != null) {
             model.addAttribute("attraction", attraction);
@@ -51,7 +74,7 @@ public class TouristController {
     @PostMapping("/update")
     public String updateAttraction(@ModelAttribute TouristAttraction touristAttraction) {
 
-        touristService.updateAttraction(touristAttraction.getName(), touristAttraction);
+        touristService.updateAttraction(touristAttraction);
 
         return "redirect:/attractions";
     }
@@ -65,28 +88,30 @@ public class TouristController {
             return "addAttraction";
     }
 
-    @PostMapping("/{name}/delete")
-    public String deleteAttraction(@PathVariable String name) {
+    @PostMapping("/save")
+    public String saveAttraction(@ModelAttribute TouristAttraction touristAttraction) {
+        touristService.addAttraction(touristAttraction);
+        return "redirect:/attractions";
+    }
 
-        touristService.deleteAttraction(name);
+    @PostMapping("/{id}/delete")
+    public String deleteAttraction(@PathVariable int id) {
+
+        touristService.deleteAttraction(id);
         return "redirect:/attractions";
 }
 
-    @GetMapping("/{name}/tags")
-    public String getAttractionTags(@PathVariable String name, Model model) {
-        TouristAttraction attraction = touristService.findAttractionByName(name);
+    @GetMapping("/{id}/tags")
+    public String getAttractionTags(@PathVariable int id, Model model) {
+        TouristAttraction attraction = touristService.getAttractionById(id);
 
         if (attraction != null) {
             model.addAttribute("attraction", attraction);
             return "tags";
         }
 
-        throw new NoSuchElementException("Attraction not found: " + name);
+        throw new NoSuchElementException("Attraction not found: " + id);
     }
 
-    @PostMapping("/save")
-    public String saveAttraction(@ModelAttribute TouristAttraction touristAttraction) {
-        touristService.addAttraction(touristAttraction);
-        return "redirect:/attractions";
-    }
+
 }

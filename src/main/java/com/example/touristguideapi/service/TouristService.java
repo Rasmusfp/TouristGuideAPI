@@ -2,6 +2,7 @@ package com.example.touristguideapi.service;
 
 import com.example.touristguideapi.model.TouristAttraction;
 import com.example.touristguideapi.repository.TouristRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,22 +25,34 @@ public class TouristService {
     }
 
     /// Metode til at returnere en specifik attraktion ved hjælp af navn
-    public TouristAttraction findAttractionByName(String name) {
-        return repository.findAttractionByName(name);
+    public TouristAttraction getAttractionById(int id) {
+        try {
+            return repository.getAttractionById(id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public TouristAttraction getAttractionByName(String name) {
+        try {
+            return repository.getAttractionByName(name);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     /// Metode til at tilføje attraktion
-    public void addAttraction(TouristAttraction touristAttraction) {
-        repository.addAttraction(touristAttraction);
+    public void addAttraction(TouristAttraction attraction) {
+        repository.addAttraction(attraction);
     }
 
     /// Metode til at opdatere attraktion
-    public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction) {
-        return repository.updateAttraction(name, updatedAttraction);
+    public void updateAttraction(TouristAttraction attraction) {
+        repository.updateAttraction(attraction);
     }
 
     /// Metode til at fjerne attraktion
-    public TouristAttraction deleteAttraction(String name) {
-        return repository.deleteAttraction(name);
+    public Boolean deleteAttraction(int id) {
+        return repository.deleteAttraction(id);
     }
 }

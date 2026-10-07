@@ -3,10 +3,19 @@ package com.example.touristguideapi.model;
 import java.util.List;
 
 public class TouristAttraction {
+    private int id;
     private String name;
     private String description;
     private String location;
     private List<Category> category;
+
+    public TouristAttraction(int id, String name, String description, String location, List<Category> category){
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.location = location;
+        this.category = category;
+    }
 
 
     public TouristAttraction(String name, String description, String location, List<Category> category){
@@ -20,6 +29,10 @@ public class TouristAttraction {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName(){
         return name;
     }
@@ -31,6 +44,10 @@ public class TouristAttraction {
     public String getLocation() {return location;}
 
     public List<Category> getCategory() {return category;}
+
+    public void setId(int id){
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;
