@@ -10,7 +10,7 @@ public interface TouristRepository {
 
     public TouristAttraction getAttractionById(int id);
 
-    public TouristAttraction getAttractionByName(String name);
+    public List<TouristAttraction> getAttractionsByName(String name);
 
     public void addAttraction(TouristAttraction touristattraction);
 

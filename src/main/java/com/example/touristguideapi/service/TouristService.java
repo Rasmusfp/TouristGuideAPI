@@ -4,6 +4,7 @@ import com.example.touristguideapi.model.TouristAttraction;
 import com.example.touristguideapi.repository.TouristRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class TouristService {
         return repository.getAllAttractions();
     }
 
-    /// Metode til at returnere en specifik attraktion ved hjælp af navn
+    /// Metode til at returnere en specifik attraktion ved hjælp af id
     public TouristAttraction getAttractionById(int id) {
         try {
             return repository.getAttractionById(id);
@@ -33,26 +34,26 @@ public class TouristService {
         }
     }
 
-    public TouristAttraction getAttractionByName(String name) {
-        try {
-            return repository.getAttractionByName(name);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
+    public List<TouristAttraction> getAttractionsByName(String name) {
+            return repository.getAttractionsByName(name);
     }
 
-    /// Metode til at tilføje attraktion
+    /// Transactional gemmer attraktion + alle tags som en samlet handling
+    /// dvs. fejler et af SQL-kaldene, rulles alt tilbage.
+    @Transactional
     public void addAttraction(TouristAttraction attraction) {
         repository.addAttraction(attraction);
     }
 
-    /// Metode til at opdatere attraktion
+    /// Opdaterer attraktionen, sletter de gamle tags og gemmer de nye.
+    /// Uden transaktion kunne de gamle tags være slettet, uden at de nye blev gemt.
+    @Transactional
     public void updateAttraction(TouristAttraction attraction) {
         repository.updateAttraction(attraction);
     }
 
     /// Metode til at fjerne attraktion
-    public Boolean deleteAttraction(int id) {
+    public boolean deleteAttraction(int id) {
         return repository.deleteAttraction(id);
     }
 }
