@@ -62,7 +62,7 @@ class TouristControllerTest {
     void getAttractionByName() throws Exception {
 
         /// Opretter et TouristAttraction-object der bruges som "falsk" svar fra servicen.
-        TouristAttraction attraction = new TouristAttraction("Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!", "København",
+        TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!", "København", 1620,
                 List.of(AMUSEMENT, CHILD_FRIENDLY));;
 
         /// Fortæller mock'en at når findAttractionByName("Tivoli") bliver kaldt, skal den returnere attraction-objektet ovenfor.
