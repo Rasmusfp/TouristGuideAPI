@@ -62,11 +62,11 @@ class TouristControllerTest {
     void getAttractionByName() throws Exception {
 
         /// Opretter et TouristAttraction-object der bruges som "falsk" svar fra servicen.
-        TouristAttraction attraction = new TouristAttraction("Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!", "København",
+        TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Tivoli med mad, drikke og masser af sjov med vores forlystelser!", "København", 1620,
                 List.of(AMUSEMENT, CHILD_FRIENDLY));;
 
         /// Fortæller mock'en at når findAttractionByName("Tivoli") bliver kaldt, skal den returnere attraction-objektet ovenfor.
-        when(touristService.getAttractionByName("Tivoli")).thenReturn(attraction);
+        when(touristService.getAttractionsByName("Tivoli")).thenReturn(List.of(attraction));
 
         /// Simulerer en GET request til /attractions/Tivoli.
         mockMvc.perform(get("/attractions/{name}", "Tivoli"))
@@ -78,7 +78,7 @@ class TouristControllerTest {
                 .andExpect(jsonPath("$.name").value("Tivoli"));
 
         /// Bekræfter at controlleren rent faktisk kaldte findAttractionByName("Tivoli") på touristService.
-        verify(touristService).getAttractionByName("Tivoli");
+        verify(touristService).getAttractionsByName("Tivoli");
     }
 
     /// Test der tjekker at POST /attractions opretter en ny attraktion korrekt.

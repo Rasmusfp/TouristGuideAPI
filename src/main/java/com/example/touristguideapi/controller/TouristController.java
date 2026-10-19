@@ -46,14 +46,9 @@ public class TouristController {
     }
 
     @GetMapping("/name/{name}")
-    public String findByName(@PathVariable String name) {
-        TouristAttraction attraction = touristService.getAttractionByName(name);
-
-        if (attraction != null) {
-            return "redirect:/attractions/" + attraction.getId();
-        }
-
-        return "redirect:/attractions";
+    public String findByName(@PathVariable String name, Model model) {
+        model.addAttribute("attractions", touristService.getAttractionsByName(name));
+        return "attractionList";
     }
 
 
