@@ -155,6 +155,9 @@ public class TouristRepositoryImpl implements TouristRepository {
     /// Metode til at tilføje en ny attraktion
     @Override
     public void addAttraction(TouristAttraction attraction) {
+
+        saveLocationIfMissing(attraction.getZipCode(), attraction.getLocation());
+
         String sql = "INSERT INTO touristattraction (name, description, zip_code) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, attraction.getName(), attraction.getDescription(), attraction.getZipCode());
 
