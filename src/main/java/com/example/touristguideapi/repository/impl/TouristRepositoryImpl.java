@@ -156,6 +156,7 @@ public class TouristRepositoryImpl implements TouristRepository {
     @Override
     public void addAttraction(TouristAttraction attraction) {
 
+        // Opretter postnummeret i location, hvis det ikke findes
         saveLocationIfMissing(attraction.getZipCode(), attraction.getLocation());
 
         String sql = "INSERT INTO touristattraction (name, description, zip_code) VALUES (?, ?, ?)";
